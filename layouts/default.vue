@@ -7,7 +7,7 @@
         <ul class="flex gap-4">
           <li><NuxtLink to="/">Home</NuxtLink></li>
           <li><NuxtLink to="/about">About</NuxtLink></li>
-          <li><NuxtLink to="/primevue">PrimeVue</NuxtLink></li>
+          <li><NuxtLink to="/todo">ToDo</NuxtLink></li>
         </ul>
       </nav>
     </header>
@@ -24,5 +24,5 @@
 </script>
 
 <style scoped>
-
+  @import url("~/assets/css/base.css");
 </style>
