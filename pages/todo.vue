@@ -25,44 +25,40 @@
   </div>
 </template>
 
-<script setup>
-  import Checkbox from 'primevue/checkbox';
-import Textarea from 'primevue/textarea';
+<script setup lang="ts">
+  import { storeToRefs } from 'pinia';
+  import { useTodosStore } from '~/store/todos'
 
-  const checked = ref(false);
+  const store = useTodosStore()
 
-  const todos = ref([
-    {
-      id: 1,
-      title: 'Learn Nuxt 3',
-      completed: true
-    },
-    {
-      id: 2,
-      title: 'Learn Pinia on Nuxt 3',
-      completed: false
-    }
-  ]);
+  const { fetchTodos } = store; // have all non reactiave stuff here
+  const { todos } = storeToRefs(store); // have all reactive states here
+
+  await fetchTodos();
 
   const updateCompleted = (updatedTodo) => {
-    const index = todos.value.findIndex(todo => todo.id === updatedTodo.id)
-    if (index !== -1) {
-      todos.value[index].completed = updatedTodo.completed
-    }
+    store.updateTodo(updatedTodo)
   }
 
+  // const deleteTodo = (id) => {
+  //   todos.value = todos.value.filter(todo => todo.id !== id)
+  // }
+
   const deleteTodo = (id) => {
-    todos.value = todos.value.filter(todo => todo.id !== id)
+    store.deleteTodo(id)
   }
 
   const newTodoTitle = ref('')
-  const addTodo = () => {
-    todos.value.push({
-      id: Date.now(),
-      title: newTodoTitle.value,
-      completed: false
-    })
-    newTodoTitle.value = ''
+  const addTodo = async () => {
+    if (newTodoTitle.value.trim()) {
+      await store.addTodo({
+        id: Date.now(),
+        title: newTodoTitle.value,
+        completed: false
+      })
+
+      newTodoTitle.value = ''
+    }
   }
 </script>
 
