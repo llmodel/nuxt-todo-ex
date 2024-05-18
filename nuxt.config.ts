@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/tailwindcss",
     "nuxt-primevue",
+    "@pinia/nuxt",
   ],
   // primevue: {
   //   cssLayerOrder: "tailwind-base, primevue, tailwind-utilities",
