@@ -1,4 +1,11 @@
-# Nuxt 3 - Tailwind CSS - PrimeVue Minimal Starter
+# Simple Todo Sample Code Using Nuxt 3 - Tailwind CSS - PrimeVue
+
+<p>The todo list was originally hardcoded in todo.vue.</p>
+<p>Then API call was used to interact with the todo list.</p>
+<p>The API is hosted on a server running FastAPI code.</p>
+<p>There is a commented out line of code that interact with a public API around line 11 of store/todos.ts</p>
+
+
 ## Configure
 Configuration was somewhat tricky.
 Used various references as below:
