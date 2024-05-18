@@ -16,6 +16,6 @@ export default defineNuxtConfig({
   // css: ["primevue/resources/themes/lara-dark-indigo/theme.css"],
   primevue: {
     options: { unstyled: true },
-    importPT: { from: path.resolve(__dirname, './presets/lara/') }      //import and apply preset   
+    importPT: { from: path.resolve(__dirname, './presets/wind/') }      //import and apply preset   
   }
 })
