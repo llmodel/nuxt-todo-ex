@@ -9,15 +9,25 @@
       @update:completed="updateCompleted"
       @delete="deleteTodo"
     />
-    <div>
-      <Checkbox :checked="checked" :binary="true" class="mr-2"/>
-      <span>Test</span>
+    <div class="flex justify-center">
+      <Button 
+        class="mt-4 flex-2" 
+        label="New Todo" 
+        @click="addTodo" 
+      />
+      <Textarea 
+        class="mt-4 ml-4 px-2 flex-1 bg-zinc-200 dark:bg-zinc-700 border-none" 
+        v-model="newTodoTitle"
+        @keyup.enter="addTodo"
+        placeholder="Enter new task..."
+      />
     </div>
   </div>
 </template>
 
 <script setup>
   import Checkbox from 'primevue/checkbox';
+import Textarea from 'primevue/textarea';
 
   const checked = ref(false);
 
@@ -34,12 +44,6 @@
     }
   ]);
 
-  // const updateCompleted = (id) => {
-  //   console.log("Toggling todo with id: " + id)
-    // toggle todo.completed value of the todo with id
-    // todos.value = todos.value.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo)
-  // }
-
   const updateCompleted = (updatedTodo) => {
     const index = todos.value.findIndex(todo => todo.id === updatedTodo.id)
     if (index !== -1) {
@@ -49,6 +53,16 @@
 
   const deleteTodo = (id) => {
     todos.value = todos.value.filter(todo => todo.id !== id)
+  }
+
+  const newTodoTitle = ref('')
+  const addTodo = () => {
+    todos.value.push({
+      id: Date.now(),
+      title: newTodoTitle.value,
+      completed: false
+    })
+    newTodoTitle.value = ''
   }
 </script>
 
